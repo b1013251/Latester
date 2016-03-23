@@ -1,0 +1,87 @@
+@charset "utf-8";
+
+* {
+  margin  : 0;
+  padding : 0;
+}
+
+body {
+  width  : 200px;
+  height : 300px;
+  background : #fff;
+}
+
+content {
+  margin-bottom : -60px;
+}
+
+footer {
+  height : 20px;
+  width : 100%;
+  position : absolute;
+  bottom : 0;
+  background : #fff;
+}
+
+ul {
+  height: 270px;
+  overflow-y: scroll;
+}
+
+ul ::-webkit-scrollbar {
+  display: none;
+}
+
+li {
+  display : block;
+  height : 20px;
+  border-bottom : 1px solid #aaa;
+  padding:  0.3em;
+  background : #eee;
+  list-style : none;
+}
+
+li a {
+  color : #000;
+  text-decoration: none;
+}
+
+li:hover {
+  background : #eaeaea;
+  cursor : default;
+}
+
+a : hover {
+  color : #aaa;
+}
+
+#plus {
+  background-image : url('./images/plus.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  width : 16px;
+  height : 16px;
+  padding : 8px;
+}
+
+span.delete {
+    display : block;
+    float : right;
+    background-image : url('./images/delete.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    width : 16px;
+    height : 16px;
+    cursor : pointer;
+}
+
+span.reload {
+    display : block;
+    float : right;
+    background-image : url('./images/reload.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    width : 16px;
+    height : 16px;
+    cursor : pointer;
+}
