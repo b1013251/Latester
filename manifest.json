@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name" : "Latest",
   "description": "最新話を常にメモしておこう",
-  "version": "1",
+  "version": "1.0",
   "options_page" : "option.html",
   "browser_action": {
     "default_icon": "images/icon16.png",

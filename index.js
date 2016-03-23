@@ -10,7 +10,7 @@ $(function() {
     $("ul").text("");
     for(var i = 0 ; i < list_data.length; i++) {
       console.log(list_data[i].title);
-      var new_li = "<li><a target='_blank' href='" + list_data[i].url + "'>" + list_data[i].title +  "</a><span class='reload' name='" + i + "'></span><span class='delete' name=' " + length + "'></span></li>";
+      var new_li = "<li><a target='_blank' href='" + list_data[i].url + "'>" + list_data[i].title +  "</a><span class='reload' name='" + i + "'></span><span class='delete' name=' " + i + "'></span></li>";
       $("ul").append(new_li);
     }
     add_events();
@@ -62,9 +62,11 @@ $(function() {
       return false;
     }
 
-    addOne({
-      url : "hoehoe",
-      title : input_txt
+    var tab = chrome.tabs.getSelected(null ,function(tab) {
+      addOne({
+        url   : tab.url,
+        title : input_txt
+      });
     });
   });
 
@@ -77,11 +79,13 @@ $(function() {
   var delete_event = function() {
     $(".delete").off("click");
     $(".delete").on("click",function(event) {
-      var index = event.currentTarget.attributes[1].value;
-      list_data.splice(index,1);
-      save();
-      //event.currentTarget.parentNode.remove();
-      addToList();
+      if(window.confirm('Really?')) {
+        var index = event.currentTarget.attributes[1].value;
+        list_data.splice(index,1);
+        save();
+        //event.currentTarget.parentNode.remove();
+        addToList();
+      }
     });
   };
 
@@ -89,13 +93,15 @@ $(function() {
   var reload_event = function() {
     $(".reload").off("click");
     $(".reload").on("click",function(event) {
-      var tab = chrome.tabs.getSelected(null ,function(tab) {
-        var index = event.currentTarget.attributes[1].value;
-        list_data[index].url = tab.url;
-        console.log(tab.url);
-        addToList();
-        save();
-      });
+      if(window.confirm('Really?')) {
+        var tab = chrome.tabs.getSelected(null ,function(tab) {
+          var index = event.currentTarget.attributes[1].value;
+          list_data[index].url = tab.url;
+          console.log(tab.url);
+          addToList();
+          save();
+        });
+      }
     });
   };
 
